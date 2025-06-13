@@ -1,16 +1,4 @@
-//your JS code here. If required.
-const sounds = ["applause", "boo", "gasp", "tada", "victory", "wrong", "stop"];
-
 const buttonsContainer = document.getElementById("buttons");
-
-sounds.forEach((sound) => {
-  const buttonHTML =
-    sound === "stop"
-      ? `<button class="stop">${sound}</button>`
-      : `<button class="btn" data-sound="${sound}">${sound}</button>`;
-
-  buttonsContainer.insertAdjacentHTML("beforeend", buttonHTML);
-});
 
 buttonsContainer.addEventListener("click", (e) => {
   const target = e.target;
@@ -28,6 +16,7 @@ buttonsContainer.addEventListener("click", (e) => {
   }
 });
 
+// Stop currently playing sound
 function stopSounds() {
   if (window.currentAudio) {
     window.currentAudio.pause();
