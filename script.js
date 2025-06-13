@@ -4,22 +4,23 @@ buttonsContainer.addEventListener("click", (e) => {
   const target = e.target;
 
   if (target.classList.contains("btn")) {
-    stopSounds();
-    const sound = target.getAttribute("data-sound");
-    const audio = new Audio(`sounds/${sound}.mp3`);
-    audio.play();
-    window.currentAudio = audio;
+    stopAllSounds();
+    const soundId = target.getAttribute("data-sound");
+    const audio = document.getElementById(soundId);
+    if (audio) {
+      audio.play();
+    }
   }
 
   if (target.classList.contains("stop")) {
-    stopSounds();
+    stopAllSounds();
   }
 });
 
-// Stop currently playing sound
-function stopSounds() {
-  if (window.currentAudio) {
-    window.currentAudio.pause();
-    window.currentAudio.currentTime = 0;
-  }
+function stopAllSounds() {
+  const audios = document.querySelectorAll("audio");
+  audios.forEach((audio) => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
 }
